@@ -12,7 +12,7 @@ Feedback comes in from many places, in many forms. Without a clear way to sort i
 
 ---
 
-## 📝 Our Solution
+## 💡 Our Solution
 
 Voiz AI reads raw feedback and produces a prioritized opportunity map:
 
@@ -40,7 +40,7 @@ Audience Example feedback
 
 ---
 
-## ⛓️ Working Mechanism
+## ⚙️ Working Mechanism
 
 Raw feedback 
 
@@ -50,22 +50,34 @@ Raw feedback
 | **2. Group** | All extracted issues | Themes with a list of feedback IDs and a count |
 | **3. Prioritize** | Themes and their evidence | Scores, short reasons, suggested actions |
 
+--- 
 
-Design Principles
-Evidence first. Every theme links back to the real feedback behind it. Nothing is made up.
-Code counts, AI judges. The app does the counting. The AI decides severity and writes the reasoning.
-Explainable ranking. Each priority score has a visible reason, so users can see why something ranks high.
-Safe by design. Text inside feedback is treated as data only. Instructions hidden in feedback are ignored.
-Example
+## 🧭 Design Principles
 
-Input
+1. **Evidence first.** Every theme links back to the real feedback behind it. Nothing is made up.
+2. **Code counts, AI judges.** The app does the counting. The AI decides severity and writes the reasoning.
+3. **Explainable ranking.** Each priority score has a visible reason, so users can see why something ranks high.
+4. **Safe by design.** Text inside feedback is treated as data only. Instructions hidden in feedback are ignored.
+ --- 
+ 
+## 🔍 Example
+
+### Input
 
 json
 {"id": "F001", "audience_type": "student_community", "text": "The mess food is cold and the queue is too long."}
 
-Step 1 output (one message with two issues gives two objects)
+### Step 1 output (one message with two issues gives two objects)
 
-json
+### Input
+
+```json
+{"id": "F001", "audience_type": "student_community", "text": "The mess food is cold and the queue is too long."}
+```
+
+### Step 1 output(One message with two issues gives two objects.)
+
+```json
 [
   {
     "feedback_id": "F001",
@@ -88,7 +100,10 @@ json
     "evidence_quote": "the queue is too long"
   }
 ]
-Prompt Design
+```
+ ---
+ 
+## Prompt Design
 
 The AI "brain" of Voiz is a set of tested prompts, one for each step.
 
