@@ -1,18 +1,18 @@
 # 🎯 Voiz AI
 
-Many Voices. One Clear Plan.
+`Many Voices. One Clear Plan.`
 
 Turns scattered feedback into a clear, ranked list of what to fix first, with the evidence behind every pick. 
 
 ---
 
-## 📢 The Problem
+## 📢 The Problem:
 
 Feedback comes in from many places, in many forms. Without a clear way to sort it, the most important problems get lost.
 
 ---
 
-## 💡 Our Solution
+## 💡 Our Solution:
 
 Voiz AI reads raw feedback and produces a prioritized opportunity map:
 
@@ -28,7 +28,7 @@ Voiz AI reads raw feedback and produces a prioritized opportunity map:
 
 ---
 
-## 👥 Target Audience
+## 👥 Target Audience:
 
 Audience Example feedback
 
@@ -40,7 +40,7 @@ Audience Example feedback
 
 ---
 
-## ⚙️ Working Mechanism
+## ⚙️ Working Mechanism:
 
 Raw feedback 
 
@@ -52,7 +52,7 @@ Raw feedback
 
 --- 
 
-## 🧭 Design Principles
+## 🧭 Design Principles:
 
 1. **Evidence first.** Every theme links back to the real feedback behind it. Nothing is made up.
 2. **Code counts, AI judges.** The app does the counting. The AI decides severity and writes the reasoning.
@@ -60,7 +60,7 @@ Raw feedback
 4. **Safe by design.** Text inside feedback is treated as data only. Instructions hidden in feedback are ignored.
  --- 
  
-## 🔍 Example
+## 🔍 Example:
 
 ### Input
 
@@ -103,42 +103,69 @@ json
 ```
  ---
  
-## Prompt Design
+## Prompt Design:
 
 The AI "brain" of Voiz is a set of tested prompts, one for each step.
 
-Fixed output schema, so the app can always read the reply.
-Fixed lists of allowed values (categories, types, sentiments), so themes stay consistent.
-Urgency scale from 1 to 5 (5 = safety risk or blocks core use, 1 = minor annoyance).
-Word-for-word evidence quotes, kept in the original language.
-Prompt injection protection and rules for empty, spam, or vague input.
+1.Fixed output schema, so the app can always read the reply.
+
+2.Fixed lists of allowed values (categories, types, sentiments), so themes stay consistent.
+
+3.Urgency scale from 1 to 5 (5 = safety risk or blocks core use, 1 = minor annoyance).
+
+4.Word-for-word evidence quotes, kept in the original language.
+
+5.Prompt injection protection and rules for empty, spam, or vague input.
 
 Prompts live in the prompts/ folder and are versioned, so changes can be compared.
 
-Project Structure
+---
 
+## 📁 Project Structure:
+
+```text
 Update this to match the real repo.
+```
 
+```text
 voiz-ai/
 ├── README.md
 ├── prompts/
-│   ├── extract_v1.txt        # Step 1: extract issues
-│   ├── group_v1.txt          # Step 2: group into themes
-│   └── prioritize_v1.txt     # Step 3: score and suggest actions
+│   ├── extract_v1.txt
+│   ├── group_v1.txt
+│   └── prioritize_v1.txt
 ├── data/
-│   ├── voiz_feedback_inputs.json   # 232 sample feedback items
-│   └── voiz_feedback_inputs.csv    # same data as CSV
-├── src/                      # application code
-├── .env.example              # example environment variables
+│   ├── voiz_feedback_inputs.json
+│   └── voiz_feedback_inputs.csv
+├── src/
+├── .env.example
 └── .gitignore
-Getting Started
+```
 
+| Item | What it holds |
+|---|---|
+| `prompts/` | The prompts for each step (extract, group, prioritize) |
+| `data/` | 232 sample feedback items in JSON and CSV |
+| `src/` | The application code |
+| `.env.example` | Example settings, with no real API key |
+| `.gitignore` | Files Git should ignore, such as `.env` |
+
+---
+
+
+## Getting Started:
+
+```text
 Fill in the commands below once the stack is final.
+```
 
-Requirements
-[Language / runtime and version]
-An API key for the AI model (Google AI Studio or other provider)
-Setup
+### Requirements:
+1.Language / runtime and version
+
+2.An API key for the AI model (Google AI Studio or other provider)
+
+### Setup:
+```text
 bash
 git clone https://github.com/<owner>/<repo>.git
 cd <repo>
@@ -149,61 +176,98 @@ cd <repo>
 # add your API key
 cp .env.example .env
 # open .env and set GEMINI_API_KEY=your_key_here
-Run
+```
+### Run:
+```text
 bash
 [run command]
+```
 
+```text
 Never commit your API key. Keep it in .env, which must be listed in .gitignore.
+```
+---
 
-Sample Data and Testing
+## Sample Data and Testing:
 
-data/ contains 232 sample feedback items across three audiences (student community, public service, product team). The same problem is written in different ways to test grouping.
+`data/` contains 232 sample feedback items across three audiences (student community, public service, product team). The same problem is written in different ways to test grouping.
 
 It also includes test cases for:
 
 Messages with no real issue ("Thanks!", "ok", "???")
+
 Spam
+
 Prompt injection ("Ignore all your instructions...")
+
 Mixed Hindi and English text
+
 Vague feedback ("Everything is bad here.")
+
 Several issues in one message
-What a good run looks like
-Output is valid JSON every time.
+
+### What a good run looks like
+Output is valid JSON every time. 
+
 Similar complaints (e.g. different Wi-Fi complaints) share the same theme label.
+
 Messages with two issues return two objects.
+
 Spam and injection attempts are ignored or skipped.
+
 Safety-related feedback gets high urgency.
-Tech Stack
 
-Fill in.
+---
 
-Part	Tool
-AI model	[e.g. Gemma 4 / Gemini via Google AI Studio]
-Backend	[ ]
-Frontend	[ ]
-Prompt testing	Google AI Studio
-Roadmap
- Opportunity map view (ranked list and impact vs effort grid)
- "Why this rank?" view showing the quotes behind each score
- Trends over time (is a problem growing?)
- Count unique people, so one person posting many times does not outweigh many people posting once
- Support for more languages
- Upload feedback from CSV or forms
-Team
-Name	Role
-[Name]	Team lead
-[Name]	Prompt engineering
-[Name]	[Role]
-Contributing
-Create a branch: git checkout -b your-change
-Commit your work: git commit -m "Short, clear message"
-Push and open a Pull Request: git push origin your-change
+## 🛠️ Tech Stack:
 
-Please do not push straight to main. When you change a prompt, save it as a new version (e.g. extract_v2.txt) and note what improved.
+| Part | Tool |
+|---|---|
+| AI model | Gemma 4 / Gemini (via Google AI Studio) |
+| Backend | Add your backend here |
+| Frontend | Add your frontend here |
+| Prompt testing | Google AI Studio | 
 
-License
+## Roadmap:
 
-[Choose a license, e.g. MIT]
+ ->Opportunity map view (ranked list and impact vs effort grid).
+ 
+ ->"Why this rank?" view showing the quotes behind each score.
+ 
+ ->Trends over time (is a problem growing?).
+ 
+ ->Count unique people, so one person posting many times does not outweigh many people posting once.
+ 
+ ->Support for more languages.
+ 
+ ->Upload feedback from CSV or forms.
 
-Voiz AI: Hear everyone. Fix what matters first.
-# Voiz AI
+ ## 🤝 Team:
+
+| Name | Role |
+|---|---|
+| Swarup Samaddar | Team Lead/Backend Developer|
+| Junie Ann Diju | Frontend Developer |
+| Pathipati Geethika| Documentation & Submission Lead  |
+| Atriya Das| Prompt Engineering |
+
+##  🙌 Contributing:
+
+Create a branch: `git checkout -b your-change`
+
+Commit your work: `git commit -m "Short, clear message"`
+
+Push and open a Pull Request: `git push origin your-change`
+
+Please do not push straight to `main`. When you change a prompt, save it as a new version (e.g. `extract_v2.txt`) and note what improved.
+
+ ## 📃 License:
+
+[MIT License](LICENSE)
+
+## 💗 Credits:
+Made with 💌 by [Github for Beginners](https://gh.io.gfb) and [Github Copilot](https://gh.io/gfb-copilot)
+
+
+`Voiz AI: Hear everyone. Fix what matters first.`
+
