@@ -224,8 +224,8 @@ Safety-related feedback gets high urgency.
 | Part | Tool |
 |---|---|
 | AI model | Gemma 4 / Gemini (via Google AI Studio) |
-| Backend | Add your backend here |
-| Frontend | Add your frontend here |
+| Backend | Antigravity |
+| Frontend | Streamlit |
 | Prompt testing | Google AI Studio | 
 
 ## Roadmap:
@@ -266,7 +266,15 @@ Please do not push straight to `main`. When you change a prompt, save it as a ne
 [MIT License](LICENSE)
 
 ## 💗 Credits:
-Made with 💌 by [Github for Beginners](https://gh.io.gfb) and [Github Copilot](https://gh.io/gfb-copilot)
+
+Built during Hacktoferbest by Team Omnitrix.
+
+**Thanks to-**
+
+- The hackathon organisers for the problem statement and resources.
+  
+- Our mentors and teammates for their ideas and feedback.
+
 
 
 `Voiz AI: Hear everyone. Fix what matters first.`
