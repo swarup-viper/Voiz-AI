@@ -267,7 +267,7 @@ Please do not push straight to `main`. When you change a prompt, save it as a ne
 
 ## 💗 Credits:
 
-Built during Hacktoferbest by Team Omnitrix.
+Built during Hacktoberfest by Team Omnitrix.
 
 **Thanks to-**
 
