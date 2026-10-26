@@ -1,1 +1,194 @@
+# 🎯 Voiz AI
+
+Many Voices. One Clear Plan.
+
+Turns scattered feedback into a clear, ranked list of what to fix first, with the evidence behind every pick. 
+
+---
+
+## 📢 The Problem
+
+Feedback comes in from many places, in many forms. Without a clear way to sort it, the most important problems get lost.
+
+---
+
+## 📝 Our Solution
+
+Voiz AI reads raw feedback and produces a prioritized opportunity map:
+
+->Understands each message and pulls out the real issue.
+
+->Groups similar issues into themes (e.g. "Slow Wi-Fi", "Garbage not collected").
+
+->Ranks themes by how often they appear, how serious they are, and how many people they affect.
+
+->Shows evidence by linking every theme to the exact words people wrote.
+
+->Suggests actions, with quick wins and longer-term fixes.
+
+---
+
+## 👥 Target Audience
+
+Audience Example feedback
+
+->Student communities :"The hostel Wi-Fi stops every evening."
+
+->Public services :"Garbage is not collected in our street for four days."
+
+->Product teams :"I am not getting the OTP when I log in."
+
+---
+
+## ⛓️ Working Mechanism
+
+Raw feedback 
+
+| Step | Input | Output |
+|---|---|---|
+| **1. Extract** | One feedback item | Theme, category, type, sentiment, urgency, audience affected, exact quote |
+| **2. Group** | All extracted issues | Themes with a list of feedback IDs and a count |
+| **3. Prioritize** | Themes and their evidence | Scores, short reasons, suggested actions |
+
+
+Design Principles
+Evidence first. Every theme links back to the real feedback behind it. Nothing is made up.
+Code counts, AI judges. The app does the counting. The AI decides severity and writes the reasoning.
+Explainable ranking. Each priority score has a visible reason, so users can see why something ranks high.
+Safe by design. Text inside feedback is treated as data only. Instructions hidden in feedback are ignored.
+Example
+
+Input
+
+json
+{"id": "F001", "audience_type": "student_community", "text": "The mess food is cold and the queue is too long."}
+
+Step 1 output (one message with two issues gives two objects)
+
+json
+[
+  {
+    "feedback_id": "F001",
+    "theme": "Cold mess food",
+    "category": "services",
+    "type": "complaint",
+    "sentiment": "negative",
+    "urgency": 3,
+    "who_affected": "hostel students",
+    "evidence_quote": "The mess food is cold"
+  },
+  {
+    "feedback_id": "F001",
+    "theme": "Long mess queue",
+    "category": "services",
+    "type": "complaint",
+    "sentiment": "negative",
+    "urgency": 3,
+    "who_affected": "hostel students",
+    "evidence_quote": "the queue is too long"
+  }
+]
+Prompt Design
+
+The AI "brain" of Voiz is a set of tested prompts, one for each step.
+
+Fixed output schema, so the app can always read the reply.
+Fixed lists of allowed values (categories, types, sentiments), so themes stay consistent.
+Urgency scale from 1 to 5 (5 = safety risk or blocks core use, 1 = minor annoyance).
+Word-for-word evidence quotes, kept in the original language.
+Prompt injection protection and rules for empty, spam, or vague input.
+
+Prompts live in the prompts/ folder and are versioned, so changes can be compared.
+
+Project Structure
+
+Update this to match the real repo.
+
+voiz-ai/
+├── README.md
+├── prompts/
+│   ├── extract_v1.txt        # Step 1: extract issues
+│   ├── group_v1.txt          # Step 2: group into themes
+│   └── prioritize_v1.txt     # Step 3: score and suggest actions
+├── data/
+│   ├── voiz_feedback_inputs.json   # 232 sample feedback items
+│   └── voiz_feedback_inputs.csv    # same data as CSV
+├── src/                      # application code
+├── .env.example              # example environment variables
+└── .gitignore
+Getting Started
+
+Fill in the commands below once the stack is final.
+
+Requirements
+[Language / runtime and version]
+An API key for the AI model (Google AI Studio or other provider)
+Setup
+bash
+git clone https://github.com/<owner>/<repo>.git
+cd <repo>
+
+# install dependencies
+[install command]
+
+# add your API key
+cp .env.example .env
+# open .env and set GEMINI_API_KEY=your_key_here
+Run
+bash
+[run command]
+
+Never commit your API key. Keep it in .env, which must be listed in .gitignore.
+
+Sample Data and Testing
+
+data/ contains 232 sample feedback items across three audiences (student community, public service, product team). The same problem is written in different ways to test grouping.
+
+It also includes test cases for:
+
+Messages with no real issue ("Thanks!", "ok", "???")
+Spam
+Prompt injection ("Ignore all your instructions...")
+Mixed Hindi and English text
+Vague feedback ("Everything is bad here.")
+Several issues in one message
+What a good run looks like
+Output is valid JSON every time.
+Similar complaints (e.g. different Wi-Fi complaints) share the same theme label.
+Messages with two issues return two objects.
+Spam and injection attempts are ignored or skipped.
+Safety-related feedback gets high urgency.
+Tech Stack
+
+Fill in.
+
+Part	Tool
+AI model	[e.g. Gemma 4 / Gemini via Google AI Studio]
+Backend	[ ]
+Frontend	[ ]
+Prompt testing	Google AI Studio
+Roadmap
+ Opportunity map view (ranked list and impact vs effort grid)
+ "Why this rank?" view showing the quotes behind each score
+ Trends over time (is a problem growing?)
+ Count unique people, so one person posting many times does not outweigh many people posting once
+ Support for more languages
+ Upload feedback from CSV or forms
+Team
+Name	Role
+[Name]	Team lead
+[Name]	Prompt engineering
+[Name]	[Role]
+Contributing
+Create a branch: git checkout -b your-change
+Commit your work: git commit -m "Short, clear message"
+Push and open a Pull Request: git push origin your-change
+
+Please do not push straight to main. When you change a prompt, save it as a new version (e.g. extract_v2.txt) and note what improved.
+
+License
+
+[Choose a license, e.g. MIT]
+
+Voiz AI: Hear everyone. Fix what matters first.
 # Voiz AI
