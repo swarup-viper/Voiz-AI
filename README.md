@@ -121,38 +121,6 @@ Prompts live in the prompts/ folder and are versioned, so changes can be compare
 
 ---
 
-## 📁 Project Structure:
-
-```text
-Update this to match the real repo.
-```
-
-```text
-voiz-ai/
-├── README.md
-├── prompts/
-│   ├── extract_v1.txt
-│   ├── group_v1.txt
-│   └── prioritize_v1.txt
-├── data/
-│   ├── voiz_feedback_inputs.json
-│   └── voiz_feedback_inputs.csv
-├── src/
-├── .env.example
-└── .gitignore
-```
-
-| Item | What it holds |
-|---|---|
-| `prompts/` | The prompts for each step (extract, group, prioritize) |
-| `data/` | 232 sample feedback items in JSON and CSV |
-| `src/` | The application code |
-| `.env.example` | Example settings, with no real API key |
-| `.gitignore` | Files Git should ignore, such as `.env` |
-
----
-
-
 ## Getting Started:
 
 ```text
